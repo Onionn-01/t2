@@ -12,7 +12,7 @@ stage ('Publish') {
 		steps {
 			echo 'public 2 runnig folder'
 		//iisreset /stop // stop iis de ghi de file 
-			bat 'xcopy "%WORKSPACE%\\publish" /E /Y /I /R "c:\\wwwroot\\myproject"'
+			bat 'xcopy "%WORKSPACE%\\publish" /E /Y /I /R "c:\\myproject"'
  		}
 	}
 stage('Deploy to IIS') {
@@ -22,7 +22,7 @@ stage('Deploy to IIS') {
                 # Tạo website nếu chưa có
                 Import-Module WebAdministration
                 if (-not (Test-Path IIS:\\Sites\\MySite)) {
-                    New-Website -Name "MySite" -Port 81 -PhysicalPath "c:\\test1-netcore"
+                    New-Website -Name "MySite" -Port 81 -PhysicalPath "c:\\myproject"
                 }
                 '''
             }
